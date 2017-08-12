@@ -1,0 +1,54 @@
+字符串和数字的转换
+
+
+数字转字符串：使用sprintf()函数
+
+1.char str[10];
+  int a = 1234321; //整数
+  sprintf(str, “%d”, a);
+-------------------------
+2.char str[10];
+  double a=123.321; //浮点数
+  sprintf(str, "%.3lf", a);
+--------------------------
+3.char str[10];
+  int a = 175;
+  sprintf(str, “%x”, a);  //把十进制转化为十六进制
+  sprintf(str, “%X”, a);  //如果要输出大写的字母
+--------------------------
+
+
+字符串转数字：使用sscanf()函数
+
+1.char str[]="1234321";
+  int a;  //整数
+  sscanf(str, "%d", &a);
+--------------------------
+2.char str[]="123.321";
+  double a;
+  sscanf(str, "%lf", &a);
+--------------------------
+3.char str[]="AF";
+  int a;
+  sscanf(str, "%x", &a); //16进制转换成10进制
+--------------------------
+
+
+使用stringstream类：
+
+用ostringstream对象写一个字符串，类似于sprintf() 
+  ostringstream s1;
+  int i = 22;
+  s1 << "Hello " << i << endl;
+  string s2 = s1.str();
+  cout << s2;
+
+用istringstream对象读一个字符串，类似于sscanf() 
+  istringstream stream1;
+  string string1 = "25";
+  stream1.str(string1);
+  int i;
+  stream1 >> i;
+  cout << i << endl;  // displays 25
+ 
+
