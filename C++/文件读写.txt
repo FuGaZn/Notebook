@@ -1,0 +1,52 @@
+文件的读写操作
+#include<fstream>
+
+1.打开文件：
+ofstream out;
+out.open(“hello.txt”, ios::in);
+或者：
+ofstream out(“hello.txt”, ios::in);  // 默认open操作
+
+
+打开文件的方式在iOS类(所以流式I/O的基类)中定义，有如下几种方式：
+
+ios::in	为输入(读)而打开文件
+ios::out	为输出(写)而打开文件
+ios::ate	初始位置：文件尾
+ios::app	所有输出附加在文件末尾
+ios::trunc	如果文件已存在则先删除该文件
+ios::binary	二进制方式
+
+
+2.关闭文件：
+file.close();
+
+
+3.文本文件写入数据：
+ofstream out("out.txt");
+if (out.is_open()) {
+    out << "hello file!";
+    out.close();
+}
+如果存在名为out的txt文件，则打开此文件，否则新建一个文件。向out文件中写入 “hello file!”。
+
+
+4.文本文件读入数据：
+char buffer[256];
+ifstream in("test.txt");
+if (in.is_open()) {
+    in.getline(buffer, 100);
+    cout << buffer << endl;
+}
+读入test文件中的内容，并把它打印到屏幕上。
+
+
+5.二进制文件
+在二进制文件中，使用<< 和>>，以及函数（如getline）来操作符输入和输出数据，没有什么实际意义，虽然它们是符合语法的。
+文件流包括两个为顺序读写数据特殊设计的成员函数：write 和 read。第一个函数 (write) 是ostream 的一个成员函数，都是被ofstream所继承。而read 是istream 的一个成员函数，被ifstream 所继承。类 fstream 的对象同时拥有这两个函数。它们的原型是：
+write ( char * buffer, streamsize size );
+read ( char * buffer, streamsize size ); 
+这里 buffer 是一块内存的地址，用来存储或读出数据。参数size 是一个整数值，表示要从缓存（buffer）中读出或写入的字符数。
+
+http://blog.csdn.net/kingstar158/article/details/6859379/
+
