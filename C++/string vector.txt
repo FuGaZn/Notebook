@@ -1,0 +1,75 @@
+————————————— string —————————————
+使用“=”初始化变量的方式为拷贝初始化，不用“=”的是直接初始化
+
+当把string对象和字符字面值及字符串字面值混在一条语句中使用时，必须确保每个加法运算符(+)的两侧对象至少有一个是string。[因为某些历史原因及为了与C兼容，C++里字符串字面值不是标准string对象]
+	string s3 = s1 + "bug";  //正确
+	string s4 = "bug" + "cat"; //错误，两个对象都不是string
+	string s4 = s1 + "bug" + "cat"; //正确
+	string s5 = "bug" + "cat" + s1; //错误
+	string s5 = "bug" + ("cat" + s1); //正确
+
+cctype头文件中定义的一些标准库函数：
+	isalnum(c) 	当c是字母或数字时为真
+	isalpha(c)	当c 是字母时为真
+	iscntrl(c)		当c是控制字符时为真
+	isdigit(c)		当c是数字时为真
+	isgraph(c) 	当c不是空格但可打印时为真
+	islower(c) 	当c是小写字母时为真
+	isupper(c) 	当c是大写字母时为真
+	isprint(c) 		判断c是否是可打印字符
+	isspace(c) 	判断c是否是空白字符（包括空格、制表符、回车符、换行符）
+	isxdigit(c) 	当c是十六进制时为真
+	tolower(c) 	转小写
+	toupper(c) 	转大写
+
+如果想要改变string对象中字符的值：
+	string s1 = "egg";
+	auto &c = s1[0];
+	c = toupper(c); 
+	使用引用绑定要改变的字符，用引用进行操作。
+
+————————————— vector —————————————
+如果初始化时使用了花括号的形式但提供的值又不能用来初始化，则要考虑用这样的值来构造vector对象了：
+	vector<string> vec{7}; //7不是string，所有构造了一个大小为7的vec
+
+vec.push_back(e); 	
+vec.pop_back();  // 删除尾端元素
+
+————————————— iterator —————————————
+string s = "hello";
+for (auto it = s.begin(); it != s.end(); it++) {
+	*it = toupper(*it);
+}  // res： "HELLO";
+
+迭代器二分搜索：
+
+vector<int> vec = { 1,2,3,4,5 }; // vec必须是有序的
+auto beg = vec.begin(), end = vec.end();
+auto mid = beg + (beg - end) / 2;
+while ((mid != end) && (*mid != target) {
+	if (target < *mid)
+		end = mid;
+	else
+		beg = mid + 1;
+	mid = beg + (beg - end) / 2;
+}
+————————————— 数组 —————————————
+数组的大小是确定的，不能随意地向数组里添加元素。a[d]中，a是数组的名字，d是数组的维度。维度必须是一个常量表达式。
+constexpr int size = 5; 	int b[size]; //正确，size是常量表达式
+int size_2 = 5;	int b[size_2]; //错误，size_2不是常量表达式
+
+定义数组必须指定数组的类型，不允许用auto来定义。数组的元素应为对象，不存在引用的数组
+
+char数组有两种初始化形式，第一种是列表初始化。第二种是用字符串字面值进行初始化。
+用字符串字面值进行初始化时，字符串字面值的结尾处有一个空字符，这个空字符也要占据一个大小的空间。
+	char c[ ] = "hello"; //大小为6
+
+不允许使用数组来初始化vector，但允许用vector来初始化数组。
+
+在一些情况下，数组的操作实际上是指针的操作，其中一层意思是当使用数组作为一个auto变量的初始值时，编译器推断出来的类型是指针而非数组。
+	int ia[] = {1, 2, 3, 4}; 
+	auto ia2(ia); 
+	//等价于auto ia2(&ia[0]), ia2是一个指向ia第一个元素的int型指针
+
+
+
