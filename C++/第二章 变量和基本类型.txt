@@ -1,0 +1,29 @@
+extern关键词：用来声明已经在其他地方定义好的变量
+	extern int a;如果在头文件里定义了a = 9，那么此处的a也被初始化为9。在函数体内部，如果试图初始化一个由extern关键字标记的变量，将引发错误。
+
+引用：
+	int &refval = ival;
+	当定义引用时，引用和初始值绑定在一起，而不是把初始值拷贝给引用。引用被绑定后，无法再重新绑定到另一个对象。
+
+指针：
+	int ival = 1024; 	int *refval = &ival;
+	1.指针本身就是一个对象，允许对指针赋值和拷贝
+	2.指针可以先后指向几个不同的对象
+	3.指针无须在定义时赋初值。
+
+顶层const表示指针本身是一个常量，底层const表示指针所指的对象是个常量
+
+constexpr关键词：声明常量表达式
+
+decltype类型指示符，选择并返回操作数的数据类型
+	decltype (item) dec = otherValue; // 把otherValue赋值给dec，而dec的类型为item的类型
+
+类型别名：
+	typedef double wage;  //wage是double的同义词，此语句等同于：using wage = double;
+	wage c = 3.14;  //c的类型是double
+
+using namespace : : name
+	using namespace : : std;
+
+
+
