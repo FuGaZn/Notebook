@@ -1,0 +1,17 @@
+string tirm(string& s){
+	int a = 0, b = 0;
+	for (int i = 0; i < s.size(); i++){
+		if (s[i] == ' '){
+			a++;
+		}
+		else break;
+	}
+	for (int i = s.size() - 1; i >= 0; i--){
+		if (s[i] == ' '){
+			b++;
+		}
+		else break;
+	}
+	s = s.substr(a, s.size() - a - b);
+	return s;
+}
