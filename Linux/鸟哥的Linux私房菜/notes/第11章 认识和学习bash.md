@@ -152,3 +152,40 @@ echo ${path%:*bin}
 
 替换：
 
+```shell
+${path/sbin/SBIN}	#把第一个sbin替换成SBIN
+${path//sbin/SBIN}	#把所有sbin替换成SBIN
+```
+
+```shell
+username=${username-root}	#username如果不存在，就把username设为root
+username=${username:-root}	#username不存在或者空字符串，就把username设为root
+```
+
+### 命令别名与历史命令
+
+命令别名：alias
+
+```shell
+alias order="oldorder"
+unlias order
+```
+
+历史命令：history
+
+```shell
+history [n]	# 将最近的n条命令列出来
+history -c	# 将目前shell中所有history内容全部清除
+history -a	# 将目前新增的history命令写入histfiles
+history -r	# 将histfiles的内容读到目前这个shell的history中
+history -w	# 将目前history写入到histfiles中
+```
+
+```shell
+!!	# 执行上一条命令
+!44 # 执行第44条命令
+!al # 执行最近的以al开头的命令
+```
+
+### Bash Shell的操作环境
+
