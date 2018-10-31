@@ -4,12 +4,12 @@
 
 ```bash
 # 把一个已有项目连接到git
-cd myProject
-git init	# 初始化git项目
-git add .
-git commit -m "no msg"
-git remote add origin http://github.com/xxx.git
-git push -u origin master
+$ cd myProject
+$ git init	# 初始化git项目
+$ git add .
+$ git commit -m "no msg"
+$ git remote add origin http://github.com/xxx.git
+$ git push -u origin master
 ```
 
 
@@ -29,11 +29,19 @@ GitHub提供的配置：https://github.com/github/gitignore
 
 ```bash
 # 显示git配置
-git config --list
+$ git config --list
+
 # 编辑用户信息
-git -config [--global] user.name "username"
-git -config [--global] user.email "email"
+$ git -config [--global] user.name "username"
+$ git -config [--global] user.email "email"
 
+# 恢复暂存区的指定文件到工作区
+$ git checkout [file]
 
+# 恢复某个commit的指定文件到暂存区和工作区
+$ git checkout [commit] [file]
+
+# 恢复暂存区的所有文件到工作区
+$ git checkout .
 ```
 
